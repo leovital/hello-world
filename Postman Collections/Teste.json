@@ -1,0 +1,459 @@
+{
+  "info": {
+    "_postman_id": "2bfebe98-8703-45ab-a05a-d1fe8a6cd159",
+    "name": "Go Rest API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Usuarios",
+      "item": [
+        {
+          "name": "Criar usuários",
+          "item": [
+            {
+              "name": "Criar usuário",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "99c912bb-af5d-4f93-aa0e-2e23c702b7a0",
+                    "exec": [
+                      "pm.test(\"Status code is 200\", function () {\r",
+                      "    pm.response.to.have.status(200);\r",
+                      "});\r",
+                      ""
+                    ],
+                    "type": "text/javascript"
+                  }
+                },
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "id": "6521a373-b5eb-4c43-b6ce-a734cabdab44",
+                    "exec": [
+                      "pm.iterationData.get(\"nome_cad\")\r",
+                      "pm.iterationData.get(\"gend_cad\")\r",
+                      "pm.iterationData.get(\"email_cad\")\r",
+                      "pm.iterationData.get(\"status_cad\")\r",
+                      ""
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "_postman_id": "a0fcaeba-c746-4233-830a-e8992780761d",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"name\": \"{{nome_cad}}\",\r\n    \"gender\": \"{{gend_cad}}\",\r\n    \"email\": \"{{email_cad}}\",\r\n    \"status\": \"{{status_cad}}\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": "{{url_usuario}}",
+                "description": "Resultados esperados:\n\n*   Response code: 201;\n*   Tempo de resposta < 2000ns"
+              },
+              "response": []
+            }
+          ],
+          "_postman_id": "6e0d2423-7d50-4b68-b080-76f75f3d32d9",
+          "_postman_isSubFolder": true
+        },
+        {
+          "name": "Alterar usuários",
+          "item": [
+            {
+              "name": "Alterar dados de usuário",
+              "_postman_id": "47edc7f0-d071-411b-824b-f88c0a7ce18f",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PATCH",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"name\": \"Tenali Ramakrishna23\",\r\n    \"gender\": \"male\",\r\n    \"email\": \"tenali.ramakris23hna@15ce.com\",\r\n    \"status\": \"active\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": "{{url_usuario}}/{{id_usuarios_update}}"
+              },
+              "response": []
+            }
+          ],
+          "_postman_id": "a8d9cf0e-a478-4fe0-9af4-1fdcb55f48b3",
+          "_postman_isSubFolder": true
+        },
+        {
+          "name": "Excluir usuários",
+          "item": [
+            {
+              "name": "Excluir usuário",
+              "_postman_id": "3d920b28-4d6a-40b7-89eb-5ecf85114af5",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": "{{url_usuario}}/{{id_usuario_excluir}}"
+              },
+              "response": []
+            }
+          ],
+          "_postman_id": "ec5d80b0-2772-4624-b9fc-03c6c92c5697",
+          "_postman_isSubFolder": true
+        },
+        {
+          "name": "Buscar usuários",
+          "item": [
+            {
+              "name": "Buscar usuário",
+              "event": [
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "id": "bca1a85a-aff0-4880-85e5-f8cdb5c76a27",
+                    "exec": [
+                      "postman.setNextRequest(\"Buscar comentários\");"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "_postman_id": "c2440cea-dffb-4cd7-af18-d6e1da6a11aa",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": "{{url_usuario}}"
+              },
+              "response": []
+            }
+          ],
+          "_postman_id": "ae62eb9a-06fa-4bcb-a376-2c16ec8543cd",
+          "_postman_isSubFolder": true
+        }
+      ],
+      "_postman_id": "defae22c-5723-4eac-8e11-efc5dcc8919c"
+    },
+    {
+      "name": "Posts",
+      "item": [
+        {
+          "name": "Criar posts",
+          "item": [
+            {
+              "name": "Criar post",
+              "_postman_id": "f90e07b8-9165-4434-9482-9209653a15bb",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"user\": \"leo leozinho\",\r\n    \"user_id\": \"3815\",\r\n    \"title\": \"teste 1\",\r\n    \"body\": \"uhuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": "{{url_post}}"
+              },
+              "response": []
+            }
+          ],
+          "_postman_id": "b7d2e67d-dddb-4bf6-8453-8c1c8d29575f",
+          "_postman_isSubFolder": true
+        },
+        {
+          "name": "Buscar post",
+          "item": [
+            {
+              "name": "Buscar post",
+              "_postman_id": "9d05db3f-d491-46bf-9893-ea4ed4479e6f",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": "{{url_post}}"
+              },
+              "response": []
+            },
+            {
+              "name": "Buscar post específico",
+              "_postman_id": "5c091884-de9b-4190-8293-62104418e956",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": "{{url_post}}/{{id_post_busca}}"
+              },
+              "response": []
+            }
+          ],
+          "_postman_id": "b2cd2e63-723d-4007-9e7b-6d8b956922a0",
+          "_postman_isSubFolder": true
+        },
+        {
+          "name": "Excluir posts",
+          "item": [
+            {
+              "name": "Excluir post",
+              "_postman_id": "25b3f146-432f-4cbe-a1d2-3d2efb592086",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": "{{url_post}}/{{id_post_excluir}}"
+              },
+              "response": []
+            }
+          ],
+          "_postman_id": "aaf1795b-8370-4bf5-adbb-0483ba18f96e",
+          "_postman_isSubFolder": true
+        }
+      ],
+      "_postman_id": "49b655a9-7ccb-4e06-b7aa-0edd219f3911"
+    },
+    {
+      "name": "Comentários",
+      "item": [
+        {
+          "name": "Buscar comentários",
+          "item": [
+            {
+              "name": "Buscar comentários",
+              "_postman_id": "22aa119c-81e8-40e4-a5ec-4fa4594f7bec",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": "{{url_comentario}}"
+              },
+              "response": []
+            },
+            {
+              "name": "Busca comentário específico",
+              "_postman_id": "899586c0-0903-4fdb-8d15-2f1f84e9fd6e",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": "{{url_comentario}}/{{id_comentario_busca}}"
+              },
+              "response": []
+            }
+          ],
+          "_postman_id": "eba697f3-9f7d-49d3-82ff-ba74e00075bf",
+          "_postman_isSubFolder": true
+        },
+        {
+          "name": "Criar comentários",
+          "item": [
+            {
+              "name": "Criar comentários",
+              "event": [
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "id": "dea18673-e69d-4d8a-8b97-e27124071376",
+                    "exec": [
+                      ""
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "_postman_id": "7aa6e374-e7d7-4237-835b-740a8cc6024e",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"name\": \"leo leozinho\",\r\n    \"email\":\"leoleozinho@leo.com\",\r\n    \"post_id\": \"1429\",\r\n    \"title\": \"teste 1\",\r\n    \"body\": \"uhuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu\"\r\n    \r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": "{{url_comentario}}"
+              },
+              "response": []
+            }
+          ],
+          "_postman_id": "60062206-7c08-4646-9665-0952f3ce93c1",
+          "_postman_isSubFolder": true
+        },
+        {
+          "name": "Excluir comentários",
+          "item": [
+            {
+              "name": "Excluir comentários",
+              "_postman_id": "63981f88-f769-4199-99c8-528d0a3efcc9",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": "{{url_comentario}}/{{id_comentario_excluir}}"
+              },
+              "response": []
+            }
+          ],
+          "_postman_id": "7c69ac30-248e-4ee5-b0d9-531210b443a6",
+          "_postman_isSubFolder": true
+        }
+      ],
+      "_postman_id": "776dedf6-e923-4b46-be4d-e3a0e9784e72"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": {
+      "token": "aba35d82b0eff1b4d128b6d8305c13c6a8443cfefeb851d90d6576ac18cb48af"
+    }
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "id": "2899b0d2-5012-4cf4-a64c-5607e2b2def5",
+        "type": "text/javascript",
+        "exec": [
+          "console.log(pm.info.requestName)"
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "id": "fa79edf3-aea4-4a79-9926-b4332836e8b7",
+        "type": "text/javascript",
+        "exec": [
+          "pm.test(\"Status code is 200\", function () {",
+          "    pm.response.to.have.status(200);",
+          "});",
+          "",
+          "pm.test(\"Response time is less than 200ms\", function () {",
+          "    pm.expect(pm.response.responseTime).to.be.below(2000);",
+          "});",
+          "",
+          "",
+          "",
+          "if (pm.request.method=='POST'){",
+          "",
+          "",
+          "pm.test(\"Successful POST request\", function () {",
+          "    pm.expect(pm.response.code).to.be.oneOf([200,201, 202]);",
+          "});",
+          "",
+          "}"
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "id": "6ff6cac0-6a9b-41e4-b456-d0530822e605",
+      "key": "url_base",
+      "value": "https://gorest.co.in/public/v2",
+      "type": "string"
+    },
+    {
+      "id": "faba3868-ab64-4d0d-9013-50914ab32879",
+      "key": "url_usuario",
+      "value": "{{url_base}}/users",
+      "type": "string"
+    },
+    {
+      "id": "544b7bae-a8b6-4fb5-a3de-0cc1f0b0e6cf",
+      "key": "url_post",
+      "value": "{{url_base}}/posts",
+      "type": "string"
+    },
+    {
+      "id": "80e2f0c2-c59a-411d-b532-9b5ff9dc3fac",
+      "key": "url_comentario",
+      "value": "{{url_base}}/comments",
+      "type": "string"
+    },
+    {
+      "id": "6b04a8f6-9bed-4f73-9225-6f9358e81f74",
+      "key": "id_comentario_excluir",
+      "value": "1253",
+      "type": "string"
+    },
+    {
+      "id": "dfb2194a-9e89-4ee5-bc1c-553d64bbd0c0",
+      "key": "id_comentario_busca",
+      "value": "1469",
+      "type": "string"
+    },
+    {
+      "id": "16228071-7342-451d-baa8-a23111a2b7d2",
+      "key": "id_post_excluir",
+      "value": "1249",
+      "type": "string"
+    },
+    {
+      "id": "3e880a73-b729-445f-bd46-61a32d9dc299",
+      "key": "id_post_busca",
+      "value": "1250",
+      "type": "string"
+    },
+    {
+      "id": "15619640-1735-41eb-b563-ebfe3ff06664",
+      "key": "id_usuario_excluir",
+      "value": "4137",
+      "type": "string"
+    },
+    {
+      "id": "46c1d607-cd2c-436a-a1cc-98841952d4fa",
+      "key": "id_usuarios_update",
+      "value": "3911",
+      "type": "string"
+    }
+  ]
+}
